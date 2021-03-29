@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+{% block content %}
+
+
+{% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
+<div class="alert alert-secondary">
+
+    <div class="container ">
+    <div class="row"> 
+      <div class="col-12">
+        {% for question in test %}
+
+        <form action="" method="post">
+
+            {% csrf_token %}
+
+           <strong>{{ question.title }} ?</strong>
+        </div>       
+    </div> 
+    </div> 
+    <div class="container"> 
+    <div class="row">
+         <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
+              <p><div class="alert alert-dark" role="alert">
+
+                {% for choice in question.choice_set.all %} <br>
+                
+                <input type="radio" name="choice" id="choice{{ forloop.counter }}" value="{{ choice.id }}">
+                
+                <label for="choice{{ forloop.counter }}">{{ choice.title }}</label><br>
+                {% endfor %}
+                
+                <br> 
+                
+                <button type="submit" class="btn btn-success" name="question" value="{{question.id}}"> Выбрать </button>
+                
+                </form>
+            </p>
+                 </div>
+             </div> 
+            </div> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> 
+     
+
+
+
+
+{% endfor %}
+
+
+
+{% endblock content%}
+

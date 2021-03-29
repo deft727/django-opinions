@@ -1,0 +1,69 @@
+
+{%extends 'base.html'%}
+{%block content%}
+
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-sm-2 col-md-2">
+            {%if profile.avatar%}
+            <img src="{{profile.avatar.url}} "
+            alt="" class="img-rounded img-responsive" width="150px" />
+            {%endif%}
+        </div>
+        <div class="col-sm-4 col-md-4">
+            <blockquote>
+                <b>{{profile}}</b> <br> <small><cite title="Source Title"> 
+                    {%if profile.birthday%}
+                    {{profile.birthday}} 
+                    {%endif%}
+                    <strong> <a href="{%url 'updateprofile'%}"> Обновить профиль </a> </strong>
+
+                    <i class="glyphicon glyphicon-map-marker"></i></cite></small>
+            </blockquote>
+            <em>информация пользователя</em> <br>
+            <i class="glyphicon glyphicon-globe"></i>
+            {%if profile.about%}
+            {{profile.about}}
+            {%else%}
+            <p>Обновите провиль</p>
+            {%endif%}
+                <br /> 
+            <p> <i class="glyphicon glyphicon-envelope"></i> 
+                
+                <table class="table">
+                    <thead>
+                      <tr>
+                        <th>Созданые тесты </th>
+                        <th>Пройденые тесты</th>
+                       
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td><ul>
+                            {%for create in profile.tests_set.all %}
+                           <a href="{{create.get_absolute_url}}"> <li>{{create}}</li></a>
+                            {%endfor%}
+                        </ul></td>
+                        <td>
+                             <ul>
+                                {%for completeTest in profile.complete.all%}
+                                <a href="{{completeTest.get_absolute_url}}"> <li>{{completeTest}}</li></a>                            {%endfor%}
+                        </ul>
+                        <br>
+                    </td><br>
+                    <br>
+                </tr>
+               
+                </tbody>           
+                </table>
+                
+                <br/> 
+        </div>
+       
+
+    </div>
+</div>
+<br>
+
+{%endblock content%}

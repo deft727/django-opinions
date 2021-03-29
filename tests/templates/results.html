@@ -1,0 +1,18 @@
+
+
+
+<h1>{{ test }}</h1>
+
+
+<ul>
+{% for choice in test.questions.all %}
+
+    <li>{{ choice.title }} -- {% for variable in choice.choice_set.all %} {{variable.title}} {%endfor%}{%if choice.answer_set.first%}  -- Правильный ответ {{ choice.answer_set.first }} {%endif%}</li>
+{% endfor %}
+
+
+</ul>
+Правильных ответов {{test.max_points}}  из {{test.questions.all.count}}
+ <br>
+
+ 

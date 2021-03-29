@@ -1,0 +1,17 @@
+{%extends 'base.html'%}
+{%block content%}
+{% if tests %}
+<div class="container mt-5">
+
+    {% for test in tests %}
+
+    <div class="alert alert-secondary">
+        <h2>{{ test.title }} </h2>
+        <p>создал: {{ test.owner}}</p>
+        <a href="{% url 'test' test.pk %}"class="btn btn-warning">Пройти тест</a>
+    </div>
+    {% endfor %}
+{% else %}
+    <p>No polls are available.</p>
+{% endif %}
+{%endblock content%}
